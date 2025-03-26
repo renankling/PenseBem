@@ -13,25 +13,18 @@ let tentativas = 3;
 let pontuacao = 0;
 
 function iniciarQuiz() {
-    codigo = prompt("Digite o código do programa:");
-    if (!gabaritos[codigo]) {
-        alert("Código inválido! Tente novamente.");
-        return;
-    }
+    codigo = document.getElementById("codigo").value.trim();
+
     indicePergunta = 0;
     tentativas = 3;
     pontuacao = 0;
     atualizarTela();
 }
 
- document.querySelectorAll("button").forEach(button => {
+ document.querySelectorAll("#botaoA, #botaoB, #botaoC, #botaoD").forEach(button => {
     button.addEventListener("click", () => {
         const resposta = button.textContent.trim().toUpperCase();
-            if (resposta === "REINICIAR") {
-                iniciarQuiz();
-            } else {
                 responder(resposta);
-        }
     });
 });
 
