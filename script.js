@@ -1,8 +1,10 @@
 const gabaritos = {
     "081": ["D", "A", "A","D","C","B","B","C","A","D","B","A","D","C","C","B","A","B","D","A",
             "C","A","B","C","B","D","A","B","A","B"],
-    "082": ["C"],
-    "083": [],
+    "082": ["D","A","C","A","C","C","B","D","D","D","B","D","C","B","A","D","A","C","A","A","B",
+            "C","A","A","B","A","D","B","B","B"],
+    "083": ["C","D","C","D","D","D","A","C","A","B","B","B","C","A","B","B","B","D","D","D","D",
+            "C","C","B","A","B","B","A","D","B","D"],
     "084": ["C","C","C","B","A","D","B","A","D","B","B","D","C","A","A","A","B","D","A","B","C",
             "C","D","D","C","C","D","D","A","A"]
 };
@@ -15,19 +17,26 @@ let pontuacao = 0;
 function iniciarQuiz() {
     codigo = document.getElementById("codigo").value.trim();
 
+    if (!gabaritos[codigo] || gabaritos[codigo].length === 0) {
+        alert("Código inválido ou sem perguntas!");
+        return;
+    }
+
+    document.querySelector('.pontuacao').classList.remove('hidden');
+    document.getElementById('botoes-resposta').classList.remove('hidden');
+    
     indicePergunta = 0;
     tentativas = 3;
     pontuacao = 0;
     atualizarTela();
 }
 
- document.querySelectorAll("#botaoA, #botaoB, #botaoC, #botaoD").forEach(button => {
+document.querySelectorAll("#botaoA, #botaoB, #botaoC, #botaoD").forEach(button => {
     button.addEventListener("click", () => {
         const resposta = button.textContent.trim().toUpperCase();
-                responder(resposta);
+        responder(resposta);
     });
 });
-
 
 function responder(resposta) {
     if (!gabaritos[codigo]) return;
@@ -64,5 +73,3 @@ function atualizarTela() {
     document.getElementById("tentativas-restantes").textContent = `Tentativas restantes: ${tentativas}`;
     document.getElementById("pontos").textContent = `Seus pontos: ${pontuacao}`;
 }
-
-iniciarQuiz();
