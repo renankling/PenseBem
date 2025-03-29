@@ -9,6 +9,15 @@ const gabaritos = {
             "C","D","D","C","C","D","D","A","A"]
 };
 
+const inicioPerguntas = {
+    "081": 1,   
+    "082": 31,  
+    "083": 61,  
+    "084": 91 
+};
+
+
+
 const imagensPerguntas = {
     "081": [
         "imagens/Q1.png",
@@ -204,12 +213,13 @@ function proximaPergunta() {
 }
 
 function atualizarTela() {
-    document.getElementById("pergunta-numero").textContent = `Pergunta: ${indicePergunta + 1}`;
+    const numeroPergunta = inicioPerguntas[codigo] + indicePergunta;
+    document.getElementById("pergunta-numero").textContent = `Pergunta: ${numeroPergunta}`;
     document.getElementById("tentativas-restantes").textContent = `Tentativas restantes: ${tentativas}`;
     document.getElementById("pontos").textContent = `Seus pontos: ${pontuacao}`;
     if (imagensPerguntas[codigo] && imagensPerguntas[codigo][indicePergunta]) {
         document.getElementById("imagem-pergunta").src = imagensPerguntas[codigo][indicePergunta];
     } else {
-        document.getElementById("imagem-pergunta").src = ""; // Se não houver imagem, remove a anterior
+        document.getElementById("imagem-pergunta").src = ""; 
     }
 }
