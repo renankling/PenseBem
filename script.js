@@ -178,8 +178,10 @@ function responder(resposta) {
     if (resposta === respostaCorreta) {
         alert("Resposta correta!");
         pontuacao += tentativas; 
+        document.getElementById("som-acerto").play();
         proximaPergunta();
     } else {
+        document.getElementById("som-erro").play();
         tentativas--;
         if (tentativas > 0) {
             alert(`Resposta errada! Você tem mais ${tentativas} tentativa(s).`);
