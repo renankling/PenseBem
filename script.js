@@ -150,23 +150,29 @@ const imagensPerguntas = {
     ]
 }
 
+
+
 let codigo;
 let indicePergunta = 0;
 let tentativas = 3;
 let pontuacao = 0;
 
+setTimeout(function() {
+    document.getElementById('content').style.opacity = '1';
+    document.getElementById('question-image').style.opacity = '1';
+    document.getElementById('scorediv').style.opacity = '1';
+    document.getElementById('imagem-pergunta').style.opacity = '1';
+}, 5000);
+
 function iniciarQuiz() {
     codigo = document.getElementById("codigo").value.trim();
 
     if (!gabaritos[codigo] || gabaritos[codigo].length === 0) {
-        alert("Código inválido ou sem perguntas!");
+        alert("Código inválido!");
         return;
     }
-
     document.querySelector('.pontuacao').classList.remove('hidden');
-    document.getElementById('botoes-resposta').classList.remove('hidden');
     document.getElementById('imagem-pergunta').classList.remove('hidden');
-    
     indicePergunta = 0;
     tentativas = 3;
     pontuacao = 0;
@@ -185,7 +191,6 @@ function responder(resposta) {
     const respostaCorreta = gabaritos[codigo][indicePergunta];
     
     if (resposta === respostaCorreta) {
-        alert("Resposta correta!");
         pontuacao += tentativas; 
         document.getElementById("som-acerto").play();
         proximaPergunta();
@@ -193,10 +198,8 @@ function responder(resposta) {
         document.getElementById("som-erro").play();
         tentativas--;
         if (tentativas > 0) {
-            alert(`Resposta errada! Você tem mais ${tentativas} tentativa(s).`);
             atualizarTela();
         } else {
-            alert("Você errou todas as tentativas. Próxima pergunta.");
             proximaPergunta();
         }
     }
@@ -206,7 +209,8 @@ function proximaPergunta() {
     indicePergunta++;
     tentativas = 3;
     if (indicePergunta >= gabaritos[codigo].length) {
-        alert(`Quiz finalizado! Sua pontuação total foi: ${pontuacao} pontos.`);
+        atualizarTela();
+        document.getElementById("som-missao-completa").play();
     } else {
         atualizarTela();
     }
@@ -214,12 +218,29 @@ function proximaPergunta() {
 
 function atualizarTela() {
     const numeroPergunta = inicioPerguntas[codigo] + indicePergunta;
-    document.getElementById("pergunta-numero").textContent = `Pergunta: ${numeroPergunta}`;
-    document.getElementById("tentativas-restantes").textContent = `Tentativas restantes: ${tentativas}`;
-    document.getElementById("pontos").textContent = `Seus pontos: ${pontuacao}`;
-    if (imagensPerguntas[codigo] && imagensPerguntas[codigo][indicePergunta]) {
-        document.getElementById("imagem-pergunta").src = imagensPerguntas[codigo][indicePergunta];
+    document.getElementById("pergunta-numero").textContent = `${numeroPergunta}`;
+    document.getElementById("tentativas-restantes").textContent = `${tentativas}`;
+    document.getElementById("pontos").textContent = `${pontuacao}`;
+
+    if (indicePergunta > 29) {
+        
+        document.getElementById("imagem-pergunta").src = "imagens/capa.png";
+        document.getElementById("pergunta-numero").textContent = `0`;
+        document.getElementById("tentativas-restantes").textContent = `0`;
     } else {
-        document.getElementById("imagem-pergunta").src = ""; 
+       
+        if (imagensPerguntas[codigo] && imagensPerguntas[codigo][indicePergunta]) {
+            document.getElementById("imagem-pergunta").src = imagensPerguntas[codigo][indicePergunta];
+        } else {
+            document.getElementById("imagem-pergunta").src = ""; 
+        }
     }
 }
+
+document.addEventListener('mousedown', function() {
+    document.body.classList.add('cursor-clicando');
+});
+
+document.addEventListener('mouseup', function() {
+    document.body.classList.remove('cursor-clicando');
+});

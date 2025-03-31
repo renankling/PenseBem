@@ -1,0 +1,350 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Press Start 2P',Arial, Helvetica, sans-serif;
+  cursor: url('Imagens/cursor-sonic.png'),auto;
+  ;
+}
+body.cursor-clicando, 
+body.cursor-clicando * {
+  cursor: url('Imagens/cursor-mao-fechada-sonic.png'), pointer !important;
+}
+
+button, a, .button, [onclick] {
+  cursor: url('Imagens/cursor-mao-fechada-sonic.png'), pointer;
+}
+.hidden {
+  display: none;
+}
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+.score {
+  width: 220px;
+  position: relative;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  top: 200px; 
+  gap: 15px;
+  transition: opacity 1s ease-in-out;
+}
+#pergunta-numero {
+  position: absolute;
+  color: #ffffff;
+  font-size: 22px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  top: 40%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+#tentativas-restantes {
+  position: absolute;
+  color: #ffffff;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  top: 73%;
+  left: 136%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.score-container, .pontuacao {
+  position: relative;
+  width: 100%;
+  margin-top: 30px; 
+}
+.points-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.no-question {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.score-content, .no-question-content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  display: flex;
+  flex-direction: column; /* Empilha os itens verticalmente */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.score-content {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: row; /* Moeda e pontos ficam na mesma linha */
+  gap: 10px;
+}
+
+.no-question-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.coin-gif {
+  width: 30px;
+  height: 30px;
+}
+#pontos {
+  color: yellow;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  width: 50%;
+  max-width: 600px;
+  flex-grow: 1;
+
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  overflow: visible;
+  gap: 10px;
+  cursor: url('Imagens/cursor-sonic.png'), pointer;
+}
+
+#iniciar{
+  width: 50%;
+  padding: 20px 25px;
+  font-size: 22px;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background-color: white;
+  box-shadow: 0px 8px 15px rgba(128, 0, 128, 0.6), 0px 10px 15px rgba(0, 0, 0, 0.3);
+  text-indent: 10px;
+  position: relative;
+  z-index: 1;
+  cursor: url('Imagens/cursor-sonic.png'),auto;
+}
+
+.search-bar {
+  width: 90%;
+  padding: 20px 25px;
+  font-size: 22px;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background-color: white;
+  box-shadow: 0px 8px 15px rgba(128, 0, 128, 0.6), 0px 10px 15px rgba(0, 0, 0, 0.3);
+  text-indent: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.title-image {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 0;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+  justify-content: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 25px 50px;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.6), 
+              0px 12px 18px rgba(0, 0, 0, 0.3);
+  cursor: url('Imagens/cursor-sonic.png'),auto;
+  
+}
+
+.button:active {
+  transform: translateY(4px);
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.6), 
+              0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.red { background-color: red; box-shadow: 0px 8px 0px darkred; }
+.yellow { background-color: yellow; color: black; box-shadow: 0px 8px 0px goldenrod; }
+.blue { background-color: blue; box-shadow: 0px 8px 0px darkblue; }
+.green { background-color: green; box-shadow: 0px 8px 0px darkgreen; }
+
+.imagens {
+  position: relative;
+  width: 40%;
+  max-width: 580px;
+  height: auto;
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px; 
+}
+
+.question-image {
+  width: 100%;
+  height: 880px;
+  position: relative; 
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+#imagem-pergunta {
+  max-width: 90%;
+  height: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+@media (max-width: 1000px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .score {
+    width: 90%;
+    max-width: 280px;
+    margin: 0 auto 15px;
+    top: 50px;
+    order: 1;
+  }
+
+  .main-container {
+    width: 100%;
+    max-width: 100%;
+    order: 2;
+    gap: 15px;
+  }
+
+  .search-container {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .search-bar,
+  #iniciar {
+    padding: 15px 20px;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .title-image {
+    max-width: 90%;
+  }
+
+  .container {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .button {
+    padding: 20px 30px;
+    font-size: 20px;
+  }
+
+  .imagens {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    order: 3;
+    top: 0;
+  }
+
+  .question-image,
+  #imagem-pergunta {
+    height: auto;
+    max-height: 500px;
+  }
+
+  #imagem-pergunta {
+    transform: translate(-50%, -50%);
+    max-width: 85%;
+    height: auto;
+  }
+
+  #pergunta-numero {
+    font-size: 16px;
+    top: 35%;
+    left: 50%;
+  }
+
+  #tentativas-restantes {
+    font-size: 16px;
+    top: 70%;
+    left: 50%;
+  }
+
+  #pontos {
+    font-size: 20px;
+  }
+
+  .coin-gif {
+    width: 25px;
+    height: 25px;
+  }
+}
